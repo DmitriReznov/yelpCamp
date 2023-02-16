@@ -26,7 +26,7 @@ const userRoutes = require('./routes/users');
 const User = require('./models/user');
 
 mongoose.set('strictQuery', true);
-const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp';//
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';//
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -50,7 +50,7 @@ app.use(
 
 app.use(methodOverride('_method'));
 
-const secret = 'thisshouldbeabettersecret!';//process.env.SECRET
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';//process.env.SECRET
 
 // const store = MongoStore.create({
 //     url: dbUrl,
